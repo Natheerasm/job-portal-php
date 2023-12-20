@@ -175,9 +175,9 @@ require_once("../db.php");
                                                     <form>
 
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="Search Mail">
+                                                            <!-- <input type="text" class="form-control" placeholder="Search Mail"> -->
                                                             <div class="input-group-btn">
-                                                                <button class="btn btn-secondary"><i class="ion ion-search"></i></button>
+                                                                <!-- <button class="btn btn-secondary"><i class="ion ion-search"></i></button> -->
                                                             </div>
                                                         </div>
                                                     </form>
@@ -221,7 +221,8 @@ require_once("../db.php");
                                                             $sql = "SELECT m.id_mailbox, m.id_fromuser, c.companyname, m.id_touser, m.subject, m.message, m.createdAt
                                                            FROM mailbox m
                                                            JOIN company c ON m.id_touser = c.id_company
-                                                           WHERE m.id_fromuser = '$_SESSION[id_user]'";
+                                                           WHERE m.id_fromuser = '$_SESSION[id_user]'
+                                                           ORDER BY m.createdAt DESC";
 
 
                                                             $result = $conn->query($sql);

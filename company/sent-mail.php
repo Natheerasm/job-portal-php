@@ -181,9 +181,9 @@ require_once("../db.php");
                                                     <form>
 
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="Search Mail">
+                                                            <!-- <input type="text" class="form-control" placeholder="Search Mail"> -->
                                                             <div class="input-group-btn">
-                                                                <button class="btn btn-secondary"><i class="ion ion-search"></i></button>
+                                                                <!-- <button class="btn btn-secondary"><i class="ion ion-search"></i></button> -->
                                                             </div>
                                                         </div>
                                                     </form>
@@ -225,9 +225,10 @@ require_once("../db.php");
                                                         <tbody>
                                                             <?php
                                                             $sql = "SELECT m.*, u.firstname, u.lastname 
-                                                           FROM mailbox m 
-                                                           JOIN users u ON m.id_touser = u.id_user  
-                                                           WHERE m.id_fromuser = '$_SESSION[id_company]'";
+                                                            FROM mailbox m 
+                                                            JOIN users u ON m.id_touser = u.id_user  
+                                                            WHERE m.id_fromuser = '$_SESSION[id_company]'
+                                                            ORDER BY m.createdAt DESC";
                                                             $result = $conn->query($sql);
                                                             if ($result->num_rows > 0) {
                                                                 while ($row = $result->fetch_assoc()) {

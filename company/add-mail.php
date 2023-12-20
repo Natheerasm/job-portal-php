@@ -19,7 +19,7 @@ if (isset($_POST)) {
 	$email  = $_POST['email'];
 	$subject = mysqli_real_escape_string($conn, $_POST['subject']);
 	$message = mysqli_real_escape_string($conn, $_POST['description']);
-	$companyname = $_POST['companyname'];
+	//$companyname = $_POST['companyname'];
 	$sql = "INSERT INTO mailbox (id_fromuser, fromuser, id_touser, subject, message) VALUES ('$_SESSION[id_company]', 'company', '$to', '$subject', '$message')";
 
 	if ($conn->query($sql) == TRUE) {
@@ -42,7 +42,7 @@ if (isset($_POST)) {
 			$mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 			//Recipients
-			$mail->setFrom('natheerasm@gmail.com', $companyname);
+			$mail->setFrom('natheerasm@gmail.com');
 			$mail->addAddress($email);
 			//$mail->addAddress('asmnatheer@gmail.com');     //Add a recipient
 			// $mail->addAddress('ellen@example.com');               //Name is optional

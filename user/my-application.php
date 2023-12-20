@@ -27,7 +27,7 @@ require_once("../db.php");
     <link rel="stylesheet" href="../dist/modules/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="../dist/css/demo.css">
     <link rel="stylesheet" href="../dist/css/style.css">
-    
+
 </head>
 
 <body>
@@ -155,9 +155,9 @@ require_once("../db.php");
                                     <div class="float-right">
                                         <form>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search">
+                                                <!-- <input type="text" class="form-control" placeholder="Search"> -->
                                                 <div class="input-group-btn">
-                                                    <button class="btn btn-secondary"><i class="ion ion-search"></i></button>
+                                                    <!-- <button class="btn btn-secondary"><i class="ion ion-search"></i></button> -->
                                                 </div>
                                             </div>
                                         </form>
@@ -166,52 +166,55 @@ require_once("../db.php");
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Job Title</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>View</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost WHERE apply_job_post.id_user='$_SESSION[id_user]'";
-        $result = $conn->query($sql);
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Job Title</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>View</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost WHERE apply_job_post.id_user='$_SESSION[id_user]'";
+                                                $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-        ?>
-                <tr>
-                    <td width="40">
-                        <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
-                            <label for="checkbox-1" class="custom-control-label"></label>
-                        </div>
-                    </td>
-                    <td><?php echo $row['jobtitle']; ?></td>
-                    <td><?php echo $row['createdat']; ?></td>
-                    <td>
-                        <?php
-                        if ($row['status'] == 0) {
-                            echo '<div class="badge badge-info">Pending</div>';
-                        } else if ($row['status'] == 1) {
-                            echo '<div class="badge badge-danger">Rejected</div>';
-                        } else if ($row['status'] == 2) {
-                            echo '<div class="badge badge-success">Under Review</div> ';
-                        }
-                        ?>
-                    </td>
-                    <td><a href="view-job-post.php?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card"></i></a></td>
-                </tr>
-        <?php
-            }
-        }
-        ?>
-    </tbody>
-</table>
+                                                if ($result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                ?>
+                                                        <tr>
+                                                            <td width="40">
+                                                                <div class="custom-checkbox custom-control">
+                                                                    <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
+                                                                    <label for="checkbox-1" class="custom-control-label"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><?php echo $row['jobtitle']; ?></td>
+                                                            <td><?php echo $row['createdat']; ?></td>
+                                                            <td>
+                                                                <?php
+                                                                if ($row['status'] == 0) {
+                                                                    echo '<div class="badge badge-info">Pending</div>';
+                                                                } else if ($row['status'] == 1) {
+                                                                    echo '<div class="badge badge-danger">Rejected</div>';
+                                                                } else if ($row['status'] == 2) {
+                                                                    echo '<div class="badge badge-success">Under Review</div> ';
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td><a href="view-job-post.php?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card"></i></a></td>
+                                                            <td><a href="delete-application.php?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-trash "></i></a></td>
+
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
 
                                     </div>
 

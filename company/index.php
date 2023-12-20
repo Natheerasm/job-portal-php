@@ -53,7 +53,7 @@ require_once("../db.php");
                   <a href="#">View All</a>
                 </div>
               </div>
-              
+
               <div class="dropdown-list-content">
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <img alt="image" src="../dist/img/avatar/avatar-1.jpeg" class="rounded-circle dropdown-item-img">
@@ -158,86 +158,92 @@ require_once("../db.php");
           <header>
             <div class="row">
               <div class="col-lg-4 col-md-6 col-12">
-                <div class="card card-sm-3">
-                  <div class="card-icon bg-primary">
-                    <i class="ion ion-ios-list"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4>JOB POSTED</h4>
+                <a href="my-job-post.php">
+                  <div class="card card-sm-3">
+                    <div class="card-icon bg-primary">
+                      <i class="ion ion-ios-list"></i>
                     </div>
-                    <?php
-                    $sql = "SELECT * FROM job_post WHERE id_company='$_SESSION[id_company]'";
-                    $result = $conn->query($sql);
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>JOB POSTED</h4>
+                      </div>
+                      <?php
+                      $sql = "SELECT * FROM job_post WHERE id_company='$_SESSION[id_company]'";
+                      $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                      $total = $result->num_rows;
-                    } else {
-                      $total = 0;
-                    }
+                      if ($result->num_rows > 0) {
+                        $total = $result->num_rows;
+                      } else {
+                        $total = 0;
+                      }
 
-                    ?>
-                    <div class="card-body">
-                      <?php echo $total; ?>
+                      ?>
+                      <div class="card-body">
+                        <?php echo $total; ?>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
               <div class="col-lg-4 col-md-6 col-12">
-                <div class="card card-sm-3">
-                  <div class="card-icon bg-danger">
-                    <i class="ion ion-person-add"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4>APPLICATION FOR JOBS</h4>
+                <a href="job-application.php">
+                  <div class="card card-sm-3">
+                    <div class="card-icon bg-danger">
+                      <i class="ion ion-person-add"></i>
                     </div>
-                    <?php
-                    $sql = "SELECT * FROM apply_job_post WHERE id_company='$_SESSION[id_company]'";
-                    $result = $conn->query($sql);
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>APPLICATION FOR JOBS</h4>
+                      </div>
+                      <?php
+                      $sql = "SELECT * FROM apply_job_post WHERE id_company='$_SESSION[id_company]'";
+                      $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                      $total = $result->num_rows;
-                    } else {
-                      $total = 0;
-                    }
-                    ?>
-                    <div class="card-body">
-                      <?php echo $total; ?>
+                      if ($result->num_rows > 0) {
+                        $total = $result->num_rows;
+                      } else {
+                        $total = 0;
+                      }
+                      ?>
+                      <div class="card-body">
+                        <?php echo $total; ?>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
               <div class="col-lg-4 col-md-6 col-12">
-                <div class="card card-sm-3">
-                  <div class="card-icon bg-success">
-                    <i class="ion ion-person-stalker"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4>REGISTERED CANDIDATES</h4>
+                <a href="job-application.php">
+                  <div class="card card-sm-3">
+                    <div class="card-icon bg-success">
+                      <i class="ion ion-person-stalker"></i>
                     </div>
-                    <?php
-                    $sql = "SELECT COUNT(*) as total_count FROM apply_job_post WHERE id_company = '$_SESSION[id_company]'";
-                    $result = $conn->query($sql);
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>REGISTERED CANDIDATES</h4>
+                      </div>
+                      <?php
+                      $sql = "SELECT COUNT(*) as total_count 
+                              FROM apply_job_post 
+                              WHERE id_company = '$_SESSION[id_company]' AND status = 1";
+                      $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                      $row = $result->fetch_assoc();
-                      $total = $row['total_count'];
-                    } else {
-                      $total = 0;
-                    }
-                    ?>
-                    <div class="card-body">
-                      <?php echo $total; ?>
+                      if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $total = $row['total_count'];
+                      } else {
+                        $total = 0;
+                      }
+                      ?>
+
+                      <div class="card-body">
+                        <?php echo $total; ?>
+                      </div>
                     </div>
                   </div>
-
-                </div>
+                </a>
               </div>
             </div>
-
-
           </header>
         </section>
 

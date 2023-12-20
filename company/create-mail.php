@@ -174,37 +174,30 @@ require_once("../db.php");
                                             <form action="add-mail.php" method="post">
                                                 <div class="card-body">
                                                     <div class="form-group col-12">
-                                                        <select class="form-control" name="to" placeholder="To:">
+                                                        <select class="form-control" name="to" id="recipientSelect" placeholder="To:">
+                                                            <option selected disabled>Select Name</option>
                                                             <?php
                                                             $sql = "SELECT apply_job_post.*,users.email, users.firstname, users.lastname, job_post.jobtitle
-                                                                    FROM apply_job_post
-                                                                    INNER JOIN users ON apply_job_post.id_user = users.id_user
-                                                                    INNER JOIN job_post ON apply_job_post.id_jobpost = job_post.id_jobpost
-                                                                    WHERE apply_job_post.id_company='$_SESSION[id_company]' AND apply_job_post.status='2'";
+                        FROM apply_job_post
+                        INNER JOIN users ON apply_job_post.id_user = users.id_user
+                        INNER JOIN job_post ON apply_job_post.id_jobpost = job_post.id_jobpost
+                        WHERE apply_job_post.id_company='$_SESSION[id_company]' AND apply_job_post.status='2'";
                                                             $result = $conn->query($sql);
 
                                                             if ($result->num_rows > 0) {
                                                                 while ($row = $result->fetch_assoc()) {
-                                                                    // Access fields from apply_job_post table
                                                                     $applyId = $row['id_apply'];
                                                                     $userId = $row['id_user'];
-                                                                    $applyStatus = $row['status'];
-                                                                    $applyDate = $row['apply_date'];
-
-                                                                    // Access fields from users table
                                                                     $firstName = $row['firstname'];
                                                                     $lastName = $row['lastname'];
                                                                     $email = $row['email'];
-                                                                    // Access fields from job_post table
                                                                     $jobTitle = $row['jobtitle'];
 
-                                                                    // Now you can use these variables as needed, for example, to display in options
-                                                                    echo '<option value="' . $userId . '">' . $firstName . ' ' . $lastName . ' ( ' . $jobTitle . ' )' . '</option>';
+                                                                    // Update the echo statement to include data-email attribute
+                                                                    echo '<option value="' . $userId . '" data-email="' . htmlspecialchars($email) . '">' . $firstName . ' ' . $lastName . ' ( ' . $jobTitle . ' )' . '</option>';
                                                                 }
                                                             }
                                                             ?>
-
-
                                                         </select>
                                                     </div>
 
@@ -220,10 +213,7 @@ require_once("../db.php");
                                                     ?>
 
                                                     <div class="form-group col-12">
-                                                        <input class="form-control" name="email" placeholder="Email" readonly value="<?php echo htmlspecialchars($companyname); ?>">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input class="form-control" name="email" placeholder="Email" readonly value="<?php echo htmlspecialchars($email); ?>">
+                                                        <input class="form-control" name="email" id="recipientEmail" placeholder="Email" readonly>
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input class="form-control" name="subject" placeholder="Subject:" required>
@@ -240,6 +230,23 @@ require_once("../db.php");
                                                     <button type="button" onclick="window.location.href='inbox-mail.php'" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
                                                 </div>
                                             </form>
+
+                                            <!-- Include jQuery -->
+                                            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                                            <script>
+                                                $(document).ready(function() {
+                                                    // Attach an event listener to the select element
+                                                    $("#recipientSelect").change(function() {
+                                                        // Get the selected option's email value
+                                                        var selectedEmail = $(this).find(":selected").data("email");
+
+                                                        // Update the readonly email input field
+                                                        $("#recipientEmail").val(selectedEmail);
+                                                    });
+                                                });
+                                            </script>
+
                                         </div>
                                         <!-- /.card -->
                                     </div>

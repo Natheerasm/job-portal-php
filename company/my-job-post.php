@@ -168,9 +168,9 @@ require_once("../db.php");
                                     <div class="float-right">
                                         <form>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search">
+                                                <!-- <input type="text" class="form-control" placeholder="Search"> -->
                                                 <div class="input-group-btn">
-                                                    <button class="btn btn-secondary"><i class="ion ion-search"></i></button>
+                                                    <!-- <button class="btn btn-secondary"><i class="ion ion-search"></i></button> -->
                                                 </div>
                                             </div>
                                         </form>
@@ -189,7 +189,7 @@ require_once("../db.php");
                                                 <th>Delete</th>
                                             </tr>
                                             <?php
-                                            $sql = "SELECT * FROM job_post WHERE id_company='$_SESSION[id_company]'";
+                                            $sql = "SELECT * FROM job_post WHERE id_company='$_SESSION[id_company]' ORDER BY createdAt DESC";
                                             $result = $conn->query($sql);
 
                                             //If Job Post exists then display details of post

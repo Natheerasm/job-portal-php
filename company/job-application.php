@@ -167,9 +167,9 @@ require_once("../db.php");
                                     <div class="float-right">
                                         <form>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search">
+                                                <!-- <input type="text" class="form-control" placeholder="Search"> -->
                                                 <div class="input-group-btn">
-                                                    <button class="btn btn-secondary"><i class="ion ion-search"></i></button>
+                                                    <!-- <button class="btn btn-secondary"><i class="ion ion-search"></i></button> -->
                                                 </div>
                                             </div>
                                         </form>
@@ -192,7 +192,14 @@ require_once("../db.php");
                                             </tr>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  INNER JOIN users ON users.id_user=apply_job_post.id_user WHERE apply_job_post.id_company='$_SESSION[id_company]'";
+                                                $sql = "SELECT * 
+                                                FROM job_post 
+                                                INNER JOIN apply_job_post 
+                                                ON job_post.id_jobpost = apply_job_post.id_jobpost  
+                                                INNER JOIN users 
+                                                ON users.id_user = apply_job_post.id_user 
+                                                WHERE apply_job_post.id_company = '$_SESSION[id_company]' 
+                                                ORDER BY apply_job_post.apply_date DESC";
                                                 $result = $conn->query($sql);
 
                                                 if ($result->num_rows > 0) {
@@ -212,7 +219,7 @@ require_once("../db.php");
 
 
                                                         <td><?php echo $row['apply_date']; ?></td>
-                                                        <td><?php echo $row['firstname'] . ' ' . $row['lastname'] ; ?></td>
+                                                        <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
 
 
                                                         <td>

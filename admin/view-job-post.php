@@ -201,40 +201,40 @@
                                                  <div class="col-lg-4">
                                                      <div class=" rounded p-5 mb-4 wow slideInUp" style="background-color :#EFFDF5;" data-wow-delay="0.1s">
                                                          <h4 class="mb-4">Job Summery</h4>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Published
-                                                             On:11111111
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Published
+                                                             On:
                                                              <?php echo date("d-M-Y", strtotime($row['createdat'])); ?>
                                                          </p>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy:
-                                                             <?php echo $row['vaccanices']; ?>111 Position
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Vacancy:
+                                                             <?php echo $row['vaccanices']; ?> Position
                                                          </p>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Job Type:
-                                                             ee
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Job Type:
+                                                             
                                                              <?php echo $row['jobtype']; ?>
                                                          </p>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Job
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Job
                                                              Nature:
                                                              <?php echo $row['jobnature']; ?>
                                                          </p>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: $
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Salary: $
                                                              <?php echo $row['minimumsalary']; ?> - $
                                                              <?php echo $row['maximumsalary']; ?>
                                                          </p>
-                                                         <p><i class="fa fa-angle-right text-primary me-2"></i>Location:
+                                                         <p><i class="fa fa-angle-right text-primary me-2"></i> Location:
                                                              <?php echo $row['city']; ?>,
                                                              <?php echo $row['state']; ?>
                                                          </p>
-                                                         <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date
+                                                         <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i> Date
                                                              Line:
                                                              <?php echo date("d-M-Y", strtotime($row['closingdate'])); ?>
                                                          </p>
                                                      </div>
                                                      <div class=" rounded p-5 wow slideInUp" data-wow-delay="0.1s" style="background-color :#EFFDF5;">
                                                          <h4 class="mb-4">Company Detail</h4>
-                                                         <h6 class="mb-4"> rr
+                                                         <h6 class="mb-4"> 
                                                              <?php echo $row['companyname']; ?>
                                                          </h6>
-                                                         <p class="m-0">rrr
+                                                         <p class="m-0">
                                                              <?php echo $row['aboutme']; ?>
                                                          </p>
                                                      </div>

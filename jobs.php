@@ -8,6 +8,7 @@ $categoryQuery = "SELECT * FROM job_categories ORDER BY CASE WHEN category_name 
 $categoryResult = $conn->query($categoryQuery);
 
 
+
 // Handle search parameters
 if (isset($_POST['search'])) {
     $category = isset($_POST['category']) ? $_POST['category'] : "";
